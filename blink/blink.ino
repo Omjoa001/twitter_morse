@@ -1,9 +1,10 @@
 // Thanks for manual labour from https://create.arduino.cc/projecthub/VulcanianArduino/arduino-morse-code-transmitter-7fdba9
-
+//TODO: replace short and long delays with short() and long() function for readability
+//TODO: Use twitter API https://github.com/witnessmenow/arduino-twitter-api
 int delaytime = 100;
 int letterdelaytime = 300;
 int worddelaytime = 700;
-int beep = 9; 
+int beep = 9; // connect buzzer
 
 void setup() {
      pinMode(beep, OUTPUT);
@@ -12,710 +13,417 @@ void setup() {
 void loop() {
 //this is where you write what the arduino will say in morse.
 //write worddelaytime if you are doing another word.
-/*a();
+h();
 delay(letterdelaytime);
-r();
+e();
 delay(letterdelaytime);
-a();
+l();
 delay(letterdelaytime);
-//l();
-//delay(letterdelaytime);
-//o();*/
+l();
+delay(letterdelaytime);
+o();
+
+delay(worddelaytime);
+TWO();
+
+delay(worddelaytime);
+u();
+
+
 
 delay(letterdelaytime);
 delay(100000);
 }//loop
 
-void transmit() {
-
-  
-    tone(beep,440);
-        delay(100);
-        noTone(beep);
-        delay(getLett());
-        tone(beep,440);
-        delay(300);
-        noTone(beep);
-        delay(100);
-}
-
-int getLett() {
-    return 100;
+char getLett() {
+    return 'a';
   }
-/*void transmit(char::letter) {
-switch(letter) {
-      case 'a' :
-        tone(beep,440);
-        delay(100);
-        noTone(beep);
-        delay(100);
-        tone(beep,440);
-        delay(300);
-        noTone(beep);
-        delay(100);
-        break;
-      case 'b':
-        tone(beep,440);
-        delay(300);
-        noTone(beep);
-        delay(100);
-        tone(beep,440);
-        delay(100);
-        noTone(beep);
-        delay(100);
-        tone(beep,440);
-        delay(100);
-        noTone(beep);
-        delay(100);
-        tone(beep,440);
-        delay(100);
-        noTone(beep);
-        delay(100);
-        break;
-        *\/
-        
-      default:
-    }
-}*/
+  
 
+void dot() {
+    tone(beep,440);
+    delay(100);
+  }
+void dash() {
+    noTone(beep);
+    delay(300);
+  }
+
+void pause() {
+    noTone(beep);
+    delay(100);
+  }
+  
 void a() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();;
+     
+     pause();;
+     
+     dash();;
+     
+     pause();;
 }//morseA
 
 void b() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseB
 
 void c() {
-     tone(beep,440);
-     delay(300);
-
-     noTone(beep);
-     delay(100);
-     
-     tone(beep,440);
-     delay(100);
-     
-     noTone(beep);
-     delay(100);
-     
-     tone(beep,440);
-     delay(300);
-     
-     noTone(beep);
-     delay(100);
-     
-     tone(beep,440);
-     delay(100);
-     
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
 }//morseC
 
 void d() {     
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseD
 
 void e() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
 }//morseE
 
 void f() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
 }//morseF
 
 void g() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
 }//morseG
 
 void h() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseH
 
 void i() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseL
 
 void j() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseJ
 
 void k() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
 }//morseK
 
 void l() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseL
 
 void m() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseM
 void n() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
 }//morseN
 
 void o() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseO
 
 void p() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
 }//morseP
 
 void q() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
 }//morseQ
 
 void r() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
 }//morseR
 
 void s() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseS
 
 void t() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
 }//morseT
 
 void u() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
 }//morseU
 
 void v() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
 }//morseV
 
 void w() {
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseW
 
 void x() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
 }//morseX
 
 void y() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseY
 
 void z() {
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseZ
 
 void ZERO(){
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseZERO
 
 void ONE(){
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseONE
 
 void TWO(){
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseTWO
 
 void THREE(){
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
 }//morseTHREE
 
 void FOUR(){
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dash();
+     pause();
 }//morseFOUR
 
 void FIVE(){
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseFIVE
 
 void SIX(){
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseSIX
 
 void SEVEN(){
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseSEVEN
 
 void EIGHT(){
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
+     dot();
+     pause();
 }//morseEIGHT
 
 void NINE(){
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(300);
-     noTone(beep);
-     delay(100);
-     tone(beep,440);
-     delay(100);
-     noTone(beep);
-     delay(100);
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dash();
+     pause();
+     dot();
+     pause();
 }//morseNINE
