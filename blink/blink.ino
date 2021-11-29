@@ -1,66 +1,78 @@
 // Thanks for manual labour from https://create.arduino.cc/projecthub/VulcanianArduino/arduino-morse-code-transmitter-7fdba9
 //TODO: replace short and long delays with short() and long() function for readability
 //TODO: Use twitter API https://github.com/witnessmenow/arduino-twitter-api
-int delaytime = 100;
-int letterdelaytime = 300;
-int worddelaytime = 700;
+int unit = 100;
+int letterdelaytime = unit*3;
+int worddelaytime = unit*7;
 int beep = 9; // connect buzzer
+char arr[2] = "h";
 
 void setup() {
      pinMode(beep, OUTPUT);
-     int letter = 100;
+     
+     //string st = "hello";
+     //the c_str() function returns a const pointer
+     //to null terminated contents.
+     //const char *str = st.c_str();
 }
+
 void loop() {
 //this is where you write what the arduino will say in morse.
 //write worddelaytime if you are doing another word.
-h();
-delay(letterdelaytime);
-e();
-delay(letterdelaytime);
-l();
-delay(letterdelaytime);
-l();
-delay(letterdelaytime);
-o();
+//a();
 
-delay(worddelaytime);
-TWO();
+//h();
 
-delay(worddelaytime);
-u();
-
-
+for (int i = 0; i < sizeof(arr); i = i + 1) {
+  //conver character to int for use in switch statement
+  int x = arr[i] - '0';
+  
+    switch (x) {
+      case 'h':
+        h();
+        break;
+      case 'e':
+        e();
+        break;
+      case 'l':
+        l();
+        break;
+      case 'o':
+        o();
+        break;
+      default:
+        a();
+        break;
+    };
+}
 
 delay(letterdelaytime);
 delay(100000);
 }//loop
 
-char getLett() {
-    return 'a';
-  }
-  
+void getLett(int x) {
+      
+  }  
 
 void dot() {
     tone(beep,440);
-    delay(100);
+    delay(unit);
   }
+
 void dash() {
-    noTone(beep);
-    delay(300);
+    tone(beep,440);
+    delay(unit*3);
   }
 
 void pause() {
     noTone(beep);
-    delay(100);
+    delay(unit);
   }
-  
+
 void a() {
      dot();;
-     
      pause();;
-     
-     dash();;
-     
+     dash();;     
      pause();;
 }//morseA
 
