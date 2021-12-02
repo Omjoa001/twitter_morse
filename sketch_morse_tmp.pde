@@ -8,6 +8,8 @@ void setup() {
 }
 
 void draw() {
-  String tweet = "ee";
-  myPort.write(tweet);
+  String tweet = "e";
+  tweet += "!";
+  myPort.write(tweet); //TODO: Figure out why this does not run immediately. Test for fault at Arduino site.
+  delay(1000);
 }

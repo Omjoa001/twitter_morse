@@ -1,11 +1,11 @@
 // Thanks for manual labour from https://create.arduino.cc/projecthub/VulcanianArduino/arduino-morse-code-transmitter-7fdba9
 //TODO: replace short and long delays with short() and long() function for readability
 //TODO: Use twitter API https://github.com/witnessmenow/arduino-twitter-api
-int unit = 100;
+int unit = 300;
 int letterdelaytime = unit*3;
 int worddelaytime = unit*7;
 int beep = 9; // connect buzzer
-char val[3] = ""; //this is where you write what the arduino will say in morse. Remember correct array size
+char val[] = ""; //this is where you write what the arduino will say in morse. Remember correct array size
 
 //TODO: Base program now running. All that remains is to communicate with twitter
 // Start here: https://forum.arduino.cc/t/arduino-twitter-without-ethernet-shield/61386
@@ -18,20 +18,21 @@ void setup() {
 }
 
 void loop() {
-
+  Serial.print("test");
   if(Serial.available() > 0) {
-   String str = Serial.readString(); // read it and store it in val
-   str.toCharArray(val,281); // toCharArray(buffer to copy the characters into, the size of the buffer). 
+   String str = Serial.readStringUntil('!'); //Serial.readString(); // read it and store it in val 
+   
+   //maybe solution 
+   str.toCharArray(val, str.length() + 1); // toCharArray(buffer to copy the characters into, the size of the buffer). 
+
    
    if (runOnce) {
     runOnce = false; //change to false to only run once and avoid going crazy 
-   
+    
   
-    for (int i = 0; i < sizeof(val); i = i + 1) {
+    for (int i = 0; i < str.length() + 1; i = i + 1) { //something with length?  1. changed from str.length()+1
       //conver character to int for use in switch statement
       int x = val[i];
-        //TODO: Figure out why it defaults
-        //hint: check what x is, and how case is interpreted.
        switch (x) {
             case char(32):
                 delay(worddelaytime);
@@ -146,14 +147,14 @@ void loop() {
                 NINE();
                 break;
            default:
-            ZERO();
+            a();
             break;
         };
       }
     
-      delay(letterdelaytime);
-      delay(100000);
     }
+    
+    delay(100000);
   }
 }//loop
 
