@@ -1,7 +1,5 @@
-// Thanks for manual labour from https://create.arduino.cc/projecthub/VulcanianArduino/arduino-morse-code-transmitter-7fdba9
-//TODO: replace short and long delays with short() and long() function for readability
 //TODO: Use twitter API https://github.com/witnessmenow/arduino-twitter-api
-int unit = 300;
+int unit = 150;
 int letterdelaytime = unit*3;
 int worddelaytime = unit*7;
 int beep = 9; // connect buzzer
@@ -68,7 +66,7 @@ void loop() {
                 j();
                 break;
             case 'k': case '\0': // Take into account end of string '\0', here letter 'k' represents end of transmission
-                //k();
+                k();
                 break;
             case 'l':
                 l();
@@ -147,7 +145,7 @@ void loop() {
                 NINE();
                 break;
            default:
-            a();
+            ZERO();
             break;
         };
       }
