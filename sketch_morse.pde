@@ -1,49 +1,59 @@
 import processing.serial.*;
 import java.util.*;
-// Note: In case of issues with import twitter4j, delete the preferences file and restart
-import twitter4j.*; 
-import twitter4j.util.*;
-import twitter4j.util.function.*;
-import twitter4j.auth.*;
-import twitter4j.management.*;
-import twitter4j.json.*;
-import twitter4j.api.*;
 import twitter4j.conf.*;
-// Alternatively use temboo library to connect to APIs. Here is a twitter example https://temboo.com/processing/display-tweet
-Twitter twitter;
+import twitter4j.*;
+import twitter4j.auth.*;
+import twitter4j.api.*;
+import java.util.*;
 
-int runOnce = 0;
+Twitter twitter;
 Serial myPort;
 
+String currentTweet = "hh"; //Initial ID 
 
-/*407.conf.*;
-import twitter4j407.*;
-import twitter4j407.auth.*;
-import twitter4j407.api.*;
-*/
-//TODO: 
-// Forget the above. Using twitter 4j, here: http://www.codasign.com/tutorials/processing-and-twitter/processing-and-twitter-getting-started/
-
-void setup() {
-  ConfigurationBuilder cb = new ConfigurationBuilder();
-  cb.setOAuthConsumerKey("****");
-  cb.setOAuthConsumerSecret("****");
-  cb.setOAuthAccessToken("****");
-  cb.setOAuthAccessTokenSecret("****");
-  
-  TwitterFactory tf = new TwitterFactory(cb.build());
-  twitter = tf.getInstance();
-  
-  String portname = Serial.list()[4]; // User println(Serial.list()) to see which port you should use
-  myPort = new Serial(this, portname, 9600);
+void setup()
+{
+    size(800,600);
+    
+    String portname = Serial.list()[4]; // User println(Serial.list()) to see which port you should use
+    myPort = new Serial(this, portname, 9600);
 }
 
-void draw() {
-    //idea is to run terminal command here.
-    // Could also use the twitter library.
-  
-  String tweet = "";
-  tweet += "!";
-  myPort.write(tweet); //TODO: Figure out why this does not run immediately. Test for fault at Arduino site.
-  delay(1000);
+void draw()
+{
+   try {
+     currentTweet += "!";
+     myPort.write(currentTweet);
+     delay(1000);
+   } catch (Exception e) {
+     delay(250);
+     System.out.println("Failed to contact twitter. Error:" + e);
+  } finally {
+     //getNewTweets();  // Need elevated access in twitter developer account. Otherwise will not run.
+  }
+}
+
+void getNewTweets()
+{
+  ConfigurationBuilder cb = new ConfigurationBuilder();
+    cb.setOAuthConsumerKey("***");
+    cb.setOAuthConsumerSecret("***");
+    cb.setOAuthAccessToken("***");
+    cb.setOAuthAccessTokenSecret("***");
+
+    TwitterFactory tf = new TwitterFactory(cb.build()); //Make instance authenticated with the above keys.
+
+    twitter = tf.getInstance();
+    
+    try
+    {
+       ResponseList<Status> userTimeLine = twitter.getUserTimeline();
+       //Split off first line.
+       currentTweet = userTimeLine.get(0).getText();   
+    }
+    catch (TwitterException te)
+    {
+        System.out.println("Failed to search tweet: " + te.getMessage());
+        System.exit(-1);
+    }
 }
